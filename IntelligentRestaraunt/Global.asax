@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="IntelligentRestaraunt.MvcApplication" Language="C#" %>
