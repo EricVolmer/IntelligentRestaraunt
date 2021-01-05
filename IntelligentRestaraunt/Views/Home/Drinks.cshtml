@@ -1,26 +1,26 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Food";
 }
+
 <div class="four-images">
     <div class="cell">
-        <a href="@Url.Action("Drinks", "Home")">
-            <img src="~/Pictures/Drinks.jpg" alt="Drinks" style="width:100%"/>
-            <div class="text"> Drinks </div>
+        <a href="@Url.Action("SoftDrink", "Home")">
+            <img src="~/Pictures/SoftDrink.jpg" alt="Drinks" style="width:100%"/>
+            <div class="text"> Soft Drinks </div>
         </a>
     </div>
+
     <div class="cell">
-        <a href="@Url.Action("Food", "Home")">
-            <img src="~/Pictures/Food.jpg" alt="Food" style="width:100%"/>
-            <div class="text"> Food </div>
+        <a href="@Url.Action("StrongDrink", "Home")">
+            <img src="~/Pictures/StrongDrink.jpg" alt="Food" style="width:100%"/>
+            <div class="text"> Strong Drinks </div>
         </a>
     </div>
 </div>
-
-<div class="allButtons">
-    <div class="button">
-        <button type="button" onclick="location.href='@Url.Action("getHelp", "Home")'"> Call for Help </button>
-    </div>
-    <p style="text-align:center; color:red; font-size: medium">For payment or help, please press the "Help" button</p>
+<div class="button">
+    <a href="@Url.Action("Index", "Home")">
+        <button type="button"> Go back </button>
+    </a>
 </div>
 
 <style>
@@ -28,31 +28,33 @@
 column-count: 2;
 }
 .button{
-display: flex;
-justify-content: center;
+float: right;
 padding: 5px;
 border: none;
 background-color: inherit;
 font-size: 20px;
 cursor:pointer;
+display: inline-block;
 }
 .button:hover{
 color: deepskyblue;
 }
+
  /* Picture alignment */
 .cell{
+
     width:100%;
-        height: 70%;
-        display:inline-block;
-        position:relative;
-        transition:.3s;
-        padding:2px;
-        cursor: pointer;
-        border-radius: 5px;
-        column-gap: 0;
-        overflow: hidden;
-float: left
-          }
+    height: 70%;
+    display:inline-block;
+    position:relative;
+    transition:.3s;
+    padding:2px;
+    cursor: pointer;
+    border-radius: 5px;
+    column-gap: 0;
+    overflow: hidden;
+    float: left;
+  }
   /* Text alignment */
  .cell .text{
         position: absolute;
@@ -75,6 +77,9 @@ float: left
     height:100%;
     transition:.5s;
     border-radius:4px;
+    margin-top: 8px;
+     
+    
   }
   /*  Blur intensity  */
   .cell:hover img{

@@ -127,7 +127,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddToCartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderedController.cs" />
+    <Compile Include="Controllers\SubmitOrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -195,6 +198,18 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\AddToCart\Myorder.cshtml" />
+    <Content Include="Views\Home\Dessert.cshtml" />
+    <Content Include="Views\Home\Drinks.cshtml" />
+    <Content Include="Views\Home\Food.cshtml" />
+    <Content Include="Views\Home\GetItems.cshtml" />
+    <Content Include="Views\Home\Meat.cshtml" />
+    <Content Include="Views\Home\Snacks.cshtml" />
+    <Content Include="Views\Home\SoftDrink.cshtml" />
+    <Content Include="Views\Home\Soup.cshtml" />
+    <Content Include="Views\Home\StrongDrink.cshtml" />
+    <Content Include="Views\Ordered\getOrderedItems.cshtml" />
+    <Content Include="Views\SubmitOrder\order.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,8 +221,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
