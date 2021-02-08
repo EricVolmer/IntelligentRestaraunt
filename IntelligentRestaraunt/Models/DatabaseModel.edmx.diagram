@@ -8,6 +8,8 @@
         <EntityTypeShape EntityType="RestaurantModel.Product" Width="1.5" PointX="3.75" PointY="1.75" />
         <EntityTypeShape EntityType="RestaurantModel.Category" Width="1.5" PointX="1.25" PointY="1.875" />
         <AssociationConnector Association="RestaurantModel.CategoryProduct" />
+        <EntityTypeShape EntityType="RestaurantModel.ItemOrder" Width="1.5" PointX="6.125" PointY="1.75" />
+        <AssociationConnector Association="RestaurantModel.ItemOrderProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

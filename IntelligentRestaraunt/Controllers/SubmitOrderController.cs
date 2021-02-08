@@ -35,7 +35,7 @@ namespace IntelligentRestaraunt.Controllers
         [ActionName("order")]
         public ActionResult order(ItemOrder itemOrder)
         {
-            Console.WriteLine(itemOrder.itemID);
+            Console.WriteLine(itemOrder.productID);
 
             return View();
         }

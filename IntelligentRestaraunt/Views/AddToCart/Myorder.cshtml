@@ -39,11 +39,11 @@
         @foreach (var x in Model)
         {
             <tr>
-                <td>@x.itemName</td>
-                <td>@x.quantity</td>
-                <td>dkk @x.price</td>
+                <td>@x.productName</td>
+                @* <td>@x.quantity</td> *@
+                <td>dkk @x.productPrice</td>
                 <td>
-                    <button id="btn_delete" class="label label-primary" data-slno="@x.itemID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
+                    <button id="btn_delete" class="label label-primary" data-slno="@x.productID" onclick="location.href='@Url.Action("Remove", "AddToCart", x)'">
                         <img src="~/Icons/delete.png" height="30" width="30" alt=""/>
                     </button>
                 </td>
@@ -58,10 +58,10 @@
         }
 
 
-        @foreach (var x in Model)
-        {
-            sum = Convert.ToDecimal(x.price) * Convert.ToDecimal(x.quantity) + sum;
-        }
+        @* @foreach (var x in Model) *@
+        @* { *@
+        @*     sum = Convert.ToDecimal(x.price) * Convert.ToDecimal(x.quantity) + sum; *@
+        @* } *@
         <tfoot>
         <tr>
             <td></td>

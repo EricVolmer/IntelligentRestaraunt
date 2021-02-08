@@ -152,9 +152,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemOrder.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\productOrderViewModel.cs" />
     <Compile Include="Models\productViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -203,6 +207,7 @@
     <Content Include="Views\Home\Drinks.cshtml" />
     <Content Include="Views\Home\Food.cshtml" />
     <Content Include="Views\Home\GetItems.cshtml" />
+    <Content Include="Views\Home\GetproductViewModels.cshtml" />
     <Content Include="Views\Home\Meat.cshtml" />
     <Content Include="Views\Home\Snacks.cshtml" />
     <Content Include="Views\Home\SoftDrink.cshtml" />
@@ -225,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Pictures" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

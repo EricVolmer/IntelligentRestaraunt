@@ -12,16 +12,23 @@ namespace IntelligentRestaraunt.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class ItemOrder
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ItemOrder()
+        {
+            this.quantity = 0;
+            this.Products = new HashSet<Product>();
+        }
+    
+        public int ItemOrderId { get; set; }
         public int productID { get; set; }
         public string productName { get; set; }
-        public string productDescription { get; set; }
         public int productPrice { get; set; }
         public int categoryID { get; set; }
-        public int ItemOrderId { get; set; }
+        public int quantity { get; set; }
     
-        public virtual Category Category { get; set; }
-        public virtual ItemOrder ItemOrder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

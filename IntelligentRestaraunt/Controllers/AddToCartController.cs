@@ -21,7 +21,7 @@ namespace IntelligentRestaraunt.Controllers
                 if (currentOrders != null)
                 {
                     for (var i = 0; i < currentOrders.Count; i++)
-                        if (((List<ItemOrder>) Session["out"])[i].itemID == newItem.Id)
+                        if (((List<ItemOrder>) Session["out"])[i].productID == newItem.productID)
                         {
                             alreadyHasItemType = true;
                             alreadyOrderedItemIndex = i;
@@ -36,13 +36,13 @@ namespace IntelligentRestaraunt.Controllers
                     {
                         var itemOrder = new ItemOrder
                         {
-                            itemName = newItem.ItemName,
-                            itemID = newItem.Id,
-                            price = newItem.Price,
+                            productName = newItem.productName,
+                            productID = newItem.productID,
+                            productPrice = newItem.productPrice,
                             quantity = 1
                         };
                         (Session["out"] as List<ItemOrder>)?.Add(itemOrder);
-                        var c = itemOrder.quantity.ToInteger(int.MaxValue);
+                      //  var c = itemOrder.quantity.ToInteger(int.MaxValue);
                     }
 
                     ViewBag.cart = ((List<ItemOrder>) Session["out"]).Count;
@@ -66,16 +66,16 @@ namespace IntelligentRestaraunt.Controllers
 
         public ActionResult Myorder()
         {
-            if (Session.IsNullOrEmpty()) return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
 
-            return View((List<ItemOrder>) Session["out"]);
+         //   return View((List<ItemOrder>) Session["out"]);
         }
 
         public ActionResult Remove(ItemOrder item)
         {
             var li = (List<ItemOrder>) Session["out"];
 
-            li.RemoveAll(x => x.itemID == item.itemID);
+            li.RemoveAll(x => x.productID == item.productID);
             var c = item.quantity;
             Console.WriteLine(c);
             Console.WriteLine(li.Count + "--");

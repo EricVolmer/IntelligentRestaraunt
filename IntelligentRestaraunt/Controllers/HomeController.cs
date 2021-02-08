@@ -189,7 +189,7 @@ namespace IntelligentRestaraunt.Controllers
 
         public ActionResult getHelp()
         {
-            var tableNo = new productViewModelOrder().tableNO;
+            var tableNo = new productOrderViewModel().tableNO;
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);

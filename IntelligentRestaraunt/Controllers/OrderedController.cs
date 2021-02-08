@@ -21,9 +21,9 @@ namespace IntelligentRestaraunt.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
-                var tableNo = ord.tableNO;
+             //   var tableNo = ord.tableNO;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var responseTask = client.GetAsync("ordereditems/" + tableNo);
+                var responseTask = client.GetAsync("ordereditems/");
                 responseTask.Wait();
 
                 var result = responseTask.Result;

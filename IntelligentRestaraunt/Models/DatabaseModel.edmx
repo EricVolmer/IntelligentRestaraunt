@@ -8,8 +8,13 @@
   <EntityContainer Name="RestaurantModelStoreContainer">
     <EntitySet Name="Products" EntityType="RestaurantModel.Store.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Categories" EntityType="RestaurantModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ItemOrders" EntityType="RestaurantModel.Store.ItemOrders" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CategoryProduct" Association="RestaurantModel.Store.CategoryProduct">
       <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="ItemOrderProduct" Association="RestaurantModel.Store.ItemOrderProduct">
+      <End Role="ItemOrder" EntitySet="ItemOrders" />
       <End Role="Product" EntitySet="Products" />
     </AssociationSet>
   </EntityContainer>
@@ -20,8 +25,9 @@
     <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="productName" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="productDescription" Type="nvarchar" Nullable="true" MaxLength="150" />
-    <Property Name="productPrice" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="productPrice" Type="int" Nullable="false" />
     <Property Name="categoryID" Type="int" Nullable="false" />
+    <Property Name="ItemOrderId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Categories">
     <Key>
@@ -29,6 +35,17 @@
     </Key>
     <Property Name="categoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="categoryName" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ItemOrders">
+    <Key>
+      <PropertyRef Name="ItemOrderId" />
+    </Key>
+    <Property Name="ItemOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="productName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="productPrice" Type="int" Nullable="false" />
+    <Property Name="categoryID" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" DefaultValue="0" />
   </EntityType>
   <Association Name="CategoryProduct">
     <End Role="Category" Type="RestaurantModel.Store.Categories" Multiplicity="1" />
@@ -39,6 +56,18 @@
       </Principal>
       <Dependent Role="Product">
         <PropertyRef Name="categoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ItemOrderProduct">
+    <End Role="ItemOrder" Type="RestaurantModel.Store.ItemOrders" Multiplicity="1" />
+    <End Role="Product" Type="RestaurantModel.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemOrder">
+        <PropertyRef Name="ItemOrderId" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ItemOrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -53,6 +82,11 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="ItemOrders" EntityType="RestaurantModel.ItemOrder" />
+          <AssociationSet Name="ItemOrderProduct" Association="RestaurantModel.ItemOrderProduct">
+            <End Role="ItemOrder" EntitySet="ItemOrders" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -61,9 +95,11 @@
           <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="productName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="productDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="productPrice" Type="String" Nullable="false" />
+          <Property Name="productPrice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="RestaurantModel.CategoryProduct" FromRole="Product" ToRole="Category" />
           <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemOrder" Relationship="RestaurantModel.ItemOrderProduct" FromRole="Product" ToRole="ItemOrder" />
+          <Property Name="ItemOrderId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -85,6 +121,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ItemOrder">
+          <Key>
+            <PropertyRef Name="ItemOrderId" />
+          </Key>
+          <Property Name="ItemOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Products" Relationship="RestaurantModel.ItemOrderProduct" FromRole="ItemOrder" ToRole="Product" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="productName" Type="String" Nullable="false" />
+          <Property Name="productPrice" Type="Int32" Nullable="false" />
+          <Property Name="categoryID" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" DefaultValue="0" />
+        </EntityType>
+        <Association Name="ItemOrderProduct">
+          <End Type="RestaurantModel.ItemOrder" Role="ItemOrder" Multiplicity="1" />
+          <End Type="RestaurantModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemOrder">
+              <PropertyRef Name="ItemOrderId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ItemOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -99,6 +159,7 @@
           <ScalarProperty Name="productDescription" ColumnName="productDescription" />
           <ScalarProperty Name="productPrice" ColumnName="productPrice" />
           <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="ItemOrderId" ColumnName="ItemOrderId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -107,6 +168,18 @@
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="categoryID" ColumnName="categoryID" />
           <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(RestaurantModel.ItemOrder)">
+        <MappingFragment StoreEntitySet="ItemOrders">
+          <ScalarProperty Name="ItemOrderId" ColumnName="ItemOrderId" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+          <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

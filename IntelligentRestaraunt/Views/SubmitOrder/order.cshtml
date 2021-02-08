@@ -20,11 +20,11 @@
 
     @foreach (var it in Model)
     {
-        <td>@it.itemID</td>
-        <td>@it.tableNO</td>
-        <td> @it.quantity</td>
-        <td>dkk @it.price</td>
+        <td>@it.productID</td>
+        @*<td>@it.tableNO</td>
+        <td> @it.quantity</td>*@
+        <td>dkk @it.productPrice</td>
 
-        <button id="btn_yes" class="label label-primary" data-slno="@it.itemID" onclick="location.href='@Url.Action("order", "SubmitOrder", it)'"/>
+        <button id="btn_yes" class="label label-primary" data-slno="@it.productID" onclick="location.href='@Url.Action("order", "SubmitOrder", it)'"/>
     }
 </table>

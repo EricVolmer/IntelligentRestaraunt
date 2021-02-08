@@ -12,17 +12,17 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.itemName)
+            @Html.DisplayNameFor(model => model.productName)
 
         </th>
 
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.quantity)
 
-        </th>
+        </th>*@
 
         <th>
-            @Html.DisplayNameFor(model => model.price)
+            @Html.DisplayNameFor(model => model.productPrice)
         </th>
 
 
@@ -33,16 +33,16 @@
         <tr>
             <td>
 
-                @Html.DisplayFor(modelOrder => ordered.itemName)
+                @Html.DisplayFor(modelOrder => ordered.productName)
             </td>
 
-            <td>
+            @*<td>
 
                 @Html.DisplayFor(modelOrder => ordered.quantity)
-            </td>
+            </td>*@
 
             <td>
-                @Html.DisplayFor(modelOrder => ordered.price)
+                @Html.DisplayFor(modelOrder => ordered.productPrice)
 
             </td>
 
